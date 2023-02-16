@@ -6,28 +6,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.print.attribute.standard.Media;
 import java.rmi.ServerException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+@RequestMapping("/user")
 @RestController
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping("/fetchAll")
     public Iterable<User> getUsers() {
         return userService.getUsers();
     }
 
-    @PostMapping(path = "/users/create",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path="/create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> create(@RequestBody User newUser) throws ServerException {
+        System.out.println(newUser);
         User user = userService.save(newUser);
         if (user == null) {
             throw  new ServerException("Error create user");
