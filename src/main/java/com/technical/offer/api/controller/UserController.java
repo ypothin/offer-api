@@ -8,10 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.attribute.standard.Media;
 import java.rmi.ServerException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @RequestMapping("/user")
 @RestController
