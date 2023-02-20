@@ -2,28 +2,26 @@ package com.technical.offer.api.service;
 
 import com.technical.offer.api.model.User;
 import com.technical.offer.api.repository.UserRepository;
+import com.technical.offer.api.service.interfaces.UserService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Data
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
-    public Optional<User> getUser(final Long id) {
-        return userRepository.findById(id);
-    }
-
-    public Iterable<User> getUsers() {
-        return userRepository.findAll();
-    }
-    public User save(User user) {
+    @Override
+    public User create(User user) {
         User saveUser = userRepository.save(user);
         return saveUser;
+    }
+
+    @Override
+    public Iterable<User> fetchAll() {
+        return userRepository.findAll();
     }
 }

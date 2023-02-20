@@ -1,16 +1,17 @@
 package com.technical.offer.api.controller;
 
+import com.technical.offer.api.dto.RegisterUserDto;
 import com.technical.offer.api.model.User;
-import com.technical.offer.api.service.UserService;
+import com.technical.offer.api.service.interfaces.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.rmi.ServerException;
 
-@RequestMapping("/user")
+@RequestMapping(value = "/user")
 @RestController
 public class UserController {
 
@@ -19,18 +20,13 @@ public class UserController {
 
     @GetMapping("/fetchAll")
     public Iterable<User> getUsers() {
-        return userService.getUsers();
+        return new ResponseEntity<>(userService.fetchAll(), HttpStatus.OK).getBody();
     }
 
-    @PostMapping(path="/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> create(@RequestBody User newUser) throws ServerException {
-        System.out.println(newUser);
-        User user = userService.save(newUser);
-        if (user == null) {
-            throw  new ServerException("Error create user");
-        } else {
-            return new ResponseEntity<>(user, HttpStatus.CREATED);
-        }
+    @PostMapping("/create")
+    public ResponseEntity<User> create(@Valid @RequestBody RegisterUserDto registerUserDto) throws ServerException {
+        User user = userService.create(registerUserDto.toUser());
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
 }
