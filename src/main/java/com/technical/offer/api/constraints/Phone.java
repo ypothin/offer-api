@@ -1,17 +1,17 @@
 package com.technical.offer.api.constraints;
 
-import com.technical.offer.api.constraints.validators.CountryValidator;
+import com.technical.offer.api.constraints.validators.PhoneFormatValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 import java.lang.annotation.*;
 
-@Constraint(validatedBy = CountryValidator.class)
+@Constraint(validatedBy = PhoneFormatValidator.class)
 @Target({ElementType.TYPE, ElementType.FIELD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface Country {
-    String message() default "{com.technical.offer.api.constraints.Country.message}";
+public @interface Phone {
+    String message() default "{com.technical.offer.api.constraints.Phone.message}";
     Class <?> [] groups() default {};
     Class <? extends Payload> [] payload() default {};
 }

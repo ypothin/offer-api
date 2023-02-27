@@ -1,5 +1,6 @@
-package com.technical.offer.api.constraints;
+package com.technical.offer.api.constraints.validators;
 
+import com.technical.offer.api.constraints.Country;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

@@ -1,6 +1,5 @@
 package com.technical.offer.api.controller;
 
-import com.technical.offer.api.dto.RegisterUserDto;
 import com.technical.offer.api.model.User;
 import com.technical.offer.api.service.interfaces.UserService;
 import jakarta.validation.Valid;
@@ -10,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.rmi.ServerException;
+import java.text.ParseException;
 
 @RequestMapping(value = "/user")
 @RestController
@@ -24,9 +24,9 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<User> create(@Valid @RequestBody RegisterUserDto registerUserDto) throws ServerException {
-        User user = userService.create(registerUserDto.toUser());
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    public ResponseEntity<User> create(@Valid @RequestBody User user) throws ServerException, ParseException {
+        User createdUser = userService.create(user);
+        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
 }
