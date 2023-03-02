@@ -1,0 +1,57 @@
+{
+  "info": {
+    "_postman_id": "c90bfd7e-5268-48af-b2a0-339120c35827",
+    "name": "Api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "21222616"
+  },
+  "item": [
+    {
+      "name": "fetchAll",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:9000/user/fetchAll",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "user",
+            "fetchAll"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"gender\": \"mr\",\r\n    \"name\": \"toutLeMonde\",\r\n    \"birthDay\": \"17/08/1983\",\r\n    \"country\": \"france\",\r\n    \"phone\": \"+33610203040\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:9000/user/create",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "user",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
